@@ -1,5 +1,5 @@
 <template>
-    <el-card shadow="never" style="margin-top: 8px" body-style="padding:0px;" class="my-fill">
+    <el-card shadow="never" body-style="padding:0px;" class="mt8 my-fill">
       <template #header>
         <el-input v-model="state.filterKeyword" placeholder="筛选部门" clearable />
       </template>

@@ -146,11 +146,11 @@ const open = async(data:any={})=>{
     .map((a: ApiInfoOutput) => a.id + '') as string[]
     
     state.form = data;
-    state.form.apiIds = [] as string[];
-    let permissionGroupApis = data.permissionGroupApis as Array<PermissionGroupApiOutput>;
-    permissionGroupApis?.forEach(api => {
-        state.form.apiIds.push(api.api?.id??'');
-    });
+    state.form.apiIds = [];
+    if(data.permissionGroupApis && data.permissionGroupApis.length>0){
+        let permissionGroupApis = data.permissionGroupApis as Array<PermissionGroupApiOutput>;
+        state.form.apiIds= permissionGroupApis.map(x=>x.api?.id??'')
+    }
     ruleFormRef.value?.resetFields();
 
     proxy.$modal.closeLoading()
