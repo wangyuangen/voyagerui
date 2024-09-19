@@ -180,7 +180,7 @@ const getPosts = async()=>{
 }
 
 const open=async(data:any)=>{
-    state.form = data;
+    state.form = JSON.parse(JSON.stringify(data));
     proxy.$modal.loading();
     await getOrgs();
     await getPosts();

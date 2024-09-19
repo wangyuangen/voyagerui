@@ -112,8 +112,8 @@ const state = reactive({
     } as UpdateMenuRouteRequest
 });
 
-const open=(row:any)=>{
-    state.form = row;
+const open=(data:any)=>{
+    state.form = JSON.parse(JSON.stringify(data));
     state.showDialog = true;
     ruleFormRef.value?.resetFields();
 }

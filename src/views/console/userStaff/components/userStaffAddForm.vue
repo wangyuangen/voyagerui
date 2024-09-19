@@ -60,7 +60,7 @@
                     <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                         <el-form-item label="性别">
                             <el-radio-group v-model="state.userInfo.gender">
-                                <el-radio-button v-for="(gender,index) in toOptionsByValue(GenderEnum)" :key="gender" :label="gender.value">
+                                <el-radio-button v-for="gender in toOptionsByValue(GenderEnum)" :key="gender.value" :label="gender.value">
                                     {{gender.label}}
                                 </el-radio-button>
                             </el-radio-group>
@@ -249,7 +249,7 @@ const open=async(data:any)=>{
     await getPosts();
     await getRoles();
     proxy.$modal.closeLoading();
-    state.form = data;
+    state.form =JSON.parse(JSON.stringify(data));
     ruleFormRef.value?.resetFields();
     state.showDialog = true;
 }

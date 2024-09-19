@@ -108,7 +108,7 @@ const { proxy } = getCurrentInstance() as any;
 const emits = defineEmits(['handleQuery']);
 
 const open=async(data:any)=>{
-    state.form = data;
+    state.form = JSON.parse(JSON.stringify(data));;
     state.checkedRegionNodes = [];
     if(data.regionCode){
       proxy.$modal.loading();

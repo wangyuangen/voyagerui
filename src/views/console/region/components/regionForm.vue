@@ -94,7 +94,7 @@ const state = reactive({
 })
 
 const open=async(data:any)=>{
-    state.form = data;
+    state.form = JSON.parse(JSON.stringify(data));
     state.checkedRegionNodes = [];
     if(data.parentCode){
       proxy.$modal.loading();

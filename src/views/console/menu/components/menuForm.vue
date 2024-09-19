@@ -175,10 +175,10 @@ const getViews = async()=>{
     state.viewTreeList = listToTree(result?.data);
 }
 
-const open= async(row:any={})=>{
+const open= async(data:any={})=>{
     proxy.$modal.loading();
     await getViews();
-    state.form = row;
+    state.form = JSON.parse(JSON.stringify(data));
     ruleFormRef.value?.resetFields();
     proxy.$modal.closeLoading();
     state.showDialog = true;

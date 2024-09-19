@@ -145,7 +145,7 @@ const open = async(data:any={})=>{
     .filter((a: ApiInfoOutput) => !isValidGuid(a.parentId))
     .map((a: ApiInfoOutput) => a.id + '') as string[]
     
-    state.form = data;
+    state.form = JSON.parse(JSON.stringify(data));
     state.form.apiIds = [];
     if(data.permissionGroupApis && data.permissionGroupApis.length>0){
         let permissionGroupApis = data.permissionGroupApis as Array<PermissionGroupApiOutput>;

@@ -116,7 +116,7 @@ const getPackages = async ()=>{
 }
 
 const open = async(data:any)=>{
-    state.form = data;
+    state.form = JSON.parse(JSON.stringify(data));
     proxy.$modal.loading();
     await getPackages();
     if(data.id && isValidGuid(data.id)){
