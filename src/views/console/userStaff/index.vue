@@ -114,6 +114,7 @@ const state = reactive({
     pageFilter: {
         pageNumber:1,
         pageSize:20,
+        orderBy:['CreatedOn Desc']
     } as UserStaffPageRequest,
     filters:[
         {

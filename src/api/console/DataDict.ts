@@ -14,7 +14,6 @@ import {
   DataDictPageRequest,
   DataDictSearchRequest,
   ResultOutputGuid,
-  ResultOutputInt32,
   ResultOutputListDataDictOutput,
   ResultOutputPaginationResponseDataDictOutput,
   UpdateDataDictRequest,
@@ -76,7 +75,7 @@ export class DataDictApi<SecurityDataType = unknown> extends HttpClient<Security
     },
     params: RequestParams = {}
   ) =>
-    this.request<ResultOutputInt32, any>({
+    this.request<ResultOutputGuid, any>({
       path: `/api/console/data-dict/delete`,
       method: 'DELETE',
       query: query,

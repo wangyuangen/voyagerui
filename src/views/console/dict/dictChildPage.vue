@@ -30,11 +30,6 @@
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作记录" width="100">
-                    <template #default="{row}">
-                        <AuditableRecord :data="row" />
-                    </template>
-                </el-table-column>
                 <el-table-column label="操作" width="140" fixed="right" header-align="center" 
                 v-auths="['api:console:data-dict:update:put','api:console:data-dict:delete:delete']">
                     <template #default="{ row }">
@@ -69,7 +64,6 @@ import { EnabledStatusEnum } from '/@/api/domain/enum-contracts';
 import { getDescByValue, getThemeByValue } from '/@/utils/enum';
 
 const DataDictChildForm = defineAsyncComponent(()=>import('./components/dictChildForm.vue'));
-const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/auditableRecord.vue'));
 
 const {proxy} = getCurrentInstance() as any;
 
@@ -78,7 +72,9 @@ const dictChildFormRef = ref();
 const state = reactive({
     loading:false,
     pageData:{} as PaginationResponseDataDictOutput,
-    pageFilter:{} as DataDictPageRequest,
+    pageFilter:{
+        orderBy:['Sort']
+    } as DataDictPageRequest,
     formTitle:'',
     dictName :''
 })

@@ -31,11 +31,6 @@
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作记录" width="100">
-                    <template #default="{row}">
-                        <AuditableRecord :data="row" />
-                    </template>
-                </el-table-column>
                 <el-table-column label="操作" width="160" fixed="right" 
                     v-auths="['api:console:view:update:put','api:console:view:delete:delete']">
                     <template #default="{row}">
@@ -60,7 +55,6 @@ import { isValidGuid } from '/@/utils/toolsValidate';
 import { getDescByValue, getThemeByValue } from '/@/utils/enum';
 
 const viewForm = defineAsyncComponent(()=>import('./components/viewForm.vue'));
-const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/auditableRecord.vue'))
 
 const viewFormRef = ref();
 

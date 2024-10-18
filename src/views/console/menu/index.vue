@@ -83,7 +83,7 @@ import { MenuRouteApi } from '/@/api/console/MenuRoute';
 import { filterTree, listToTree, treeToList } from '/@/utils/tree';
 import { cloneDeep } from 'lodash';
 
-const proxy = getCurrentInstance() as any;
+const {proxy} = getCurrentInstance() as any;
 
 const MenuForm = defineAsyncComponent(()=>import('./components/menuForm.vue'));
 const MenuGroupForm = defineAsyncComponent(()=>import('./components/menuGroupForm.vue'));

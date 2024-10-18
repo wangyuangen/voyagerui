@@ -179,7 +179,6 @@ const open= async(data:any={})=>{
     proxy.$modal.loading();
     await getViews();
     state.form = JSON.parse(JSON.stringify(data));
-    ruleFormRef.value?.resetFields();
     proxy.$modal.closeLoading();
     state.showDialog = true;
 }

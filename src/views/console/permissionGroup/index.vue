@@ -30,9 +30,11 @@
                 </el-table-column>
                 <el-table-column label="接口资源" min-width="240">
                     <template #default="{row}">
-                        <el-tag v-for="(api,index) in row.permissionGroupApis" :key="index">
-                            {{api.api.code}}
-                        </el-tag>
+                        <el-space wrap size="10">
+                            <el-tag v-for="(api,index) in row.permissionGroupApis" :key="index">
+                                {{api.api.code}}
+                            </el-tag>
+                        </el-space>
                     </template>
                 </el-table-column>
                 <el-table-column label="权限范围" min-width="120" show-overflow-tooltip>
@@ -40,11 +42,6 @@
                         <el-tag :type="getThemeByValue(DataPermissionScope,row.scope)">
                             {{getDescByValue(DataPermissionScope,row.scope)}}
                         </el-tag>
-                    </template>
-                </el-table-column>
-                <el-table-column label="操作记录" width="100">
-                    <template #default="{row}">
-                        <AuditableRecord :data="row" />
                     </template>
                 </el-table-column>
                 <el-table-column label="操作" width="160" fixed="right" 
@@ -71,7 +68,6 @@ import { isValidGuid } from '/@/utils/toolsValidate';
 import { getDescByValue, getThemeByValue } from '/@/utils/enum';
 
 const PermissionGroupForm = defineAsyncComponent(()=>import('./components/permissionGroupForm.vue'));
-const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/auditableRecord.vue'))
 
 const { proxy } = getCurrentInstance() as any;
 

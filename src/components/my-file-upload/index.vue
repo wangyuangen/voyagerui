@@ -1,5 +1,11 @@
 <template>
-    <el-upload drag :auto-upload="false" :limit="limit" :on-change="onFileChange"  accept=".jpg,.png,.bmp,.gif,.txt,.pdf,.xlsx,.docx">
+    <el-upload drag 
+        :auto-upload="false" 
+        :limit="limit" 
+        :multiple="multiple && limit>1"
+        :on-change="onFileChange" 
+        :on-exceed="onExceed"
+        accept=".jpg,.png,.bmp,.gif,.txt,.pdf,.xlsx,.docx">
         <el-icon class="el-icon--upload">
             <ele-UploadFilled />
         </el-icon>
@@ -8,13 +14,24 @@
 </template>
 
 <script lang="ts" setup name="fileUpload">
+import { getCurrentInstance } from 'vue';
 
 defineProps({
     limit:{
         type:Number,
         default:1
+    },
+    multiple:{
+        type:Boolean,
+        default:false
     }
 })
+
+const { proxy } = getCurrentInstance() as any;
+
+const onExceed=()=>{
+    proxy.$modal.msgWarning('允许上传的文件数量超过了限制');
+}
 
 const emits = defineEmits(['onFileChange'])
 

@@ -23,11 +23,6 @@
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作记录" width="100">
-                    <template #default="{row}">
-                        <AuditableRecord :data="row" />
-                    </template>
-                </el-table-column>
                 <el-table-column label="操作" width="160" fixed="right"
                     v-auths="['api:console:package-info:auth-change:post','api:console:package-info:update:put','api:console:package-info:delete:delete']">
                     <template #default="{row}">
@@ -73,7 +68,6 @@ import { auth } from '/@/utils/authFunction';
 const MyDropdownMore = defineAsyncComponent(()=>import('/@/components/my-dropdown-more/index.vue'));
 const PackageForm = defineAsyncComponent(()=>import('./components/packageForm.vue'));
 const PackagePermission = defineAsyncComponent(()=>import('./components/packagePermission.vue'));
-const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/auditableRecord.vue'));
 
 const packageFormRef = ref();
 const pacakgePermissionRef = ref();
@@ -84,7 +78,9 @@ const state=reactive({
     formTitle:'',
     loading:false,
     pageData:{} as PaginationResponsePackageInfoOutput,
-    pageFilter:{} as PackageInfoPageRequest
+    pageFilter:{
+        orderBy:['Sort']
+    } as PackageInfoPageRequest
 });
 
 onMounted(async()=>{

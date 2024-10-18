@@ -50,27 +50,13 @@ export interface ApiInfoEnabledStatusChangeRequest {
    * @format uuid
    */
   id: string
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
 }
 
 export interface ApiInfoOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /** 接口名称 */
   name?: string | null
   /** 接口路径 */
@@ -91,7 +77,7 @@ export interface ApiInfoOutput {
    * @format uuid
    */
   parentId?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -100,7 +86,7 @@ export interface ApiInfoSearchRequest {
   search?: AdvancedSearch
   keyword?: string | null
   filter?: AdvancedFilter
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -178,7 +164,7 @@ export interface CreateDataDictRequest {
    * @maxLength 512
    */
   remark?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
 }
 
@@ -252,7 +238,7 @@ export interface CreateMenuRouteRequest {
    * @maxLength 512
    */
   remark?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
 }
 
@@ -271,7 +257,7 @@ export interface CreateOrganizeInfoRequest {
   name: string
   /** 机构类型:Company(公司)=0,Department(部门)=1,Group(小组)=2 */
   organizeType: OrganizeTypeEnum
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 描述
@@ -315,7 +301,7 @@ export interface CreatePackageInfoRequest {
    * @format int32
    */
   sort: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
 }
 
@@ -339,7 +325,7 @@ export interface CreatePermissionGroupRequest {
    * @format int32
    */
   sort: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 父级
@@ -399,7 +385,7 @@ export interface CreateRegionInfoRequest {
   sort: number
   /** 热门 */
   hot: boolean
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
 }
 
@@ -421,7 +407,7 @@ export interface CreateRoleInfoRequest {
    * @format int32
    */
   sort: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
 }
 
@@ -473,7 +459,7 @@ export interface CreateTenantRequest {
    * @maxLength 256
    */
   regionText: string
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /** 套餐Id集合 */
   packageIds: string[]
@@ -498,7 +484,7 @@ export interface CreateUserStaffRequest {
    * @maxLength 32
    */
   jobNo: string
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 入职日期
@@ -557,7 +543,7 @@ export interface CreateViewInfoRequest {
    * @format int32
    */
   sort: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 上级
@@ -599,20 +585,6 @@ export interface CurrentUserStaffOutput {
 export interface DataDictOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /** 字典父级编码 */
   parentCode?: string | null
   /** 字典唯一编码 */
@@ -628,7 +600,7 @@ export interface DataDictOutput {
   themeStyle?: string | null
   /** 描述 */
   remark?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -651,7 +623,7 @@ export interface DataDictPageRequest {
 
 /** 字典列表查询 */
 export interface DataDictSearchRequest {
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -662,7 +634,7 @@ export interface DataDictSearchRequest {
 export type DataPermissionScope = 1 | 2 | 3 | 4 | 5 | 6
 
 /**
- * Disabled(禁用)=0,Enabled(启用)=1
+ * 启用状态:Disabled(禁用)=0,Enabled(启用)=1
  * @format int32
  */
 export type EnabledStatusEnum = 0 | 1
@@ -785,6 +757,13 @@ export interface FileStorageInfoSimpleOutput {
   extension?: string | null
   /** 链接地址 */
   linkUrl?: string | null
+  /**
+   * 所属业务对象主键Id
+   * @format uuid
+   */
+  bizId?: string | null
+  /** 所属业务对象名称 */
+  bizName?: string | null
 }
 
 /**
@@ -800,7 +779,7 @@ export type FilterLogicEnum = 0 | 1 | 2
 export type FilterOperatorEnum = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 
 /**
- * Unknown(未知)=0,Male(男)=1,Female(女)=2
+ * 性别:Unknown(未知)=0,Male(男)=1,Female(女)=2
  * @format int32
  */
 export type GenderEnum = 0 | 1 | 2
@@ -809,20 +788,6 @@ export type GenderEnum = 0 | 1 | 2
 export interface MenuRouteOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /**
    * 父级
    * @format uuid
@@ -869,7 +834,7 @@ export interface MenuRouteOutput {
   sort?: number
   /** 描述 */
   remark?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -878,7 +843,7 @@ export interface MenuRouteSearchRequest {
   search?: AdvancedSearch
   keyword?: string | null
   filter?: AdvancedFilter
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -894,6 +859,11 @@ export interface MenuRouteSimpleOutput {
    * @format uuid
    */
   parentId?: string | null
+  /**
+   * 排序
+   * @format int32
+   */
+  sort?: number
 }
 
 /**
@@ -969,13 +939,14 @@ export interface Options {
   desc?: string | null
   /**
    * 值
-   * @format int64
+   * @format int32
    */
   value?: number
   /** 主题样式 */
   theme?: string | null
 }
 
+/** 机构输出 */
 export interface OrganizeInfoOutput {
   /** @format uuid */
   id?: string
@@ -1002,7 +973,7 @@ export interface OrganizeInfoOutput {
   name?: string | null
   /** 机构类型:Company(公司)=0,Department(部门)=1,Group(小组)=2 */
   organizeType?: OrganizeTypeEnum
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
   /** 描述 */
   remark?: string | null
@@ -1022,7 +993,7 @@ export interface OrganizeInfoSearchRequest {
   search?: AdvancedSearch
   keyword?: string | null
   filter?: AdvancedFilter
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -1058,23 +1029,9 @@ export interface PackageAuthInfoOutput {
 export interface PackageInfoOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /** 名称 */
   name?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
   /** 描述 */
   remark?: string | null
@@ -1102,7 +1059,7 @@ export interface PackageInfoSearchRequest {
   search?: AdvancedSearch
   keyword?: string | null
   filter?: AdvancedFilter
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -1283,20 +1240,6 @@ export interface PermissionGroupApiOutput {
 export interface PermissionGroupOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /** 名称 */
   name?: string | null
   /** 描述 */
@@ -1308,7 +1251,7 @@ export interface PermissionGroupOutput {
    * @format int32
    */
   sort?: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
   /**
    * 父级
@@ -1321,20 +1264,6 @@ export interface PermissionGroupOutput {
 export interface PermissionGroupWithApiOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /** 名称 */
   name?: string | null
   /** 描述 */
@@ -1346,7 +1275,7 @@ export interface PermissionGroupWithApiOutput {
    * @format int32
    */
   sort?: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
   /**
    * 父级
@@ -1362,27 +1291,14 @@ export interface PermissionGroupWithApiSearchRequest {
   search?: AdvancedSearch
   keyword?: string | null
   filter?: AdvancedFilter
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
+/** 岗位输出 */
 export interface PostInfoOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /** 岗位名称 */
   name?: string | null
   /** 描述 */
@@ -1415,7 +1331,7 @@ export interface RegionInfoEnabledChangeRequest {
    * @format uuid
    */
   id: string
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
 }
 
@@ -1456,7 +1372,7 @@ export interface RegionInfoPageOutput {
   sort?: number
   /** 热门 */
   hot?: boolean
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -1478,7 +1394,7 @@ export interface RegionInfoPageRequest {
   level?: RegionLevel
   /** 热门 */
   hot?: boolean | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -1488,7 +1404,7 @@ export interface RegionInfoSearchRequest {
   parentCode?: string | null
   /** 热门 */
   hot?: boolean | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -2143,20 +2059,6 @@ export interface RoleInfoAuthChangeRequest {
 export interface RoleInfoOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /** 角色名称 */
   name?: string | null
   /** 描述 */
@@ -2166,7 +2068,7 @@ export interface RoleInfoOutput {
    * @format int32
    */
   sort?: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -2187,7 +2089,7 @@ export interface RoleInfoSearchRequest {
   search?: AdvancedSearch
   keyword?: string | null
   filter?: AdvancedFilter
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }
 
@@ -2255,7 +2157,7 @@ export interface TenantOutput {
   remark?: string | null
   /** 租户类型:NormalTenant(普通租户)=0,PlatformTenant(平台租户)=1 */
   tenantType?: TenantTypeEnum
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
   /**
    * 有效期限
@@ -2336,7 +2238,7 @@ export interface UpdateDataDictRequest {
    * @maxLength 512
    */
   remark?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 主键
@@ -2415,7 +2317,7 @@ export interface UpdateMenuRouteRequest {
    * @maxLength 512
    */
   remark?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 主键
@@ -2439,7 +2341,7 @@ export interface UpdateOrganizeInfoRequest {
   name: string
   /** 机构类型:Company(公司)=0,Department(部门)=1,Group(小组)=2 */
   organizeType: OrganizeTypeEnum
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 描述
@@ -2488,7 +2390,7 @@ export interface UpdatePackageInfoRequest {
    * @format int32
    */
   sort: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 主键
@@ -2517,7 +2419,7 @@ export interface UpdatePermissionGroupRequest {
    * @format int32
    */
   sort: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 父级
@@ -2563,7 +2465,7 @@ export interface UpdatePersonalUserInfoRequest {
    * @maxLength 16
    */
   password?: string | null
-  /** Unknown(未知)=0,Male(男)=1,Female(女)=2 */
+  /** 性别:Unknown(未知)=0,Male(男)=1,Female(女)=2 */
   gender: GenderEnum
   /**
    * 员工真实姓名
@@ -2632,7 +2534,7 @@ export interface UpdateRegionInfoRequest {
   sort: number
   /** 热门 */
   hot: boolean
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 区域Id
@@ -2659,7 +2561,7 @@ export interface UpdateRoleInfoRequest {
    * @format int32
    */
   sort: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 主键
@@ -2716,7 +2618,7 @@ export interface UpdateTenantRequest {
    * @maxLength 256
    */
   regionText: string
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 主键
@@ -2746,7 +2648,7 @@ export interface UpdateUserStaffRequest {
    * @maxLength 32
    */
   jobNo: string
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 入职日期
@@ -2808,7 +2710,7 @@ export interface UpdateViewInfoRequest {
    * @format int32
    */
   sort: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled: EnabledStatusEnum
   /**
    * 上级
@@ -2852,7 +2754,7 @@ export interface UserInfoInput {
    * @maxLength 16
    */
   password?: string | null
-  /** Unknown(未知)=0,Male(男)=1,Female(女)=2 */
+  /** 性别:Unknown(未知)=0,Male(男)=1,Female(女)=2 */
   gender: GenderEnum
 }
 
@@ -2893,7 +2795,7 @@ export interface UserInfoOutput {
   avatarFileId?: string | null
   /** 头像外链 */
   avatarUrl?: string | null
-  /** Unknown(未知)=0,Male(男)=1,Female(女)=2 */
+  /** 性别:Unknown(未知)=0,Male(男)=1,Female(女)=2 */
   gender?: GenderEnum
 }
 
@@ -2919,7 +2821,7 @@ export interface UserStaffExtendOutput {
   roleIds?: string[] | null
 }
 
-/** 员工 */
+/** 员工输出 */
 export interface UserStaffOutput {
   /** @format uuid */
   id?: string
@@ -2947,12 +2849,13 @@ export interface UserStaffOutput {
    * @format uuid
    */
   postId?: string
+  /** 岗位输出 */
   post?: PostInfoOutput
   /** 真实姓名 */
   realName?: string | null
   /** 工号 */
   jobNo?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
   /**
    * 入职日期
@@ -2966,6 +2869,7 @@ export interface UserStaffOutput {
    * @format uuid
    */
   orgId?: string
+  /** 机构输出 */
   org?: OrganizeInfoOutput
   /** 是否为主管 */
   isManager?: boolean
@@ -3001,12 +2905,13 @@ export interface UserStaffPageOutput {
    * @format uuid
    */
   postId?: string
+  /** 岗位输出 */
   post?: PostInfoOutput
   /** 真实姓名 */
   realName?: string | null
   /** 工号 */
   jobNo?: string | null
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
   /**
    * 入职日期
@@ -3020,6 +2925,7 @@ export interface UserStaffPageOutput {
    * @format uuid
    */
   orgId?: string
+  /** 机构输出 */
   org?: OrganizeInfoOutput
   /** 是否为主管 */
   isManager?: boolean
@@ -3067,20 +2973,6 @@ export type ValidateResultType = 0 | 1 | 2
 export interface ViewInfoOutput {
   /** @format uuid */
   id?: string
-  /** @format uuid */
-  createdBy?: string
-  /** @format uuid */
-  createdOrgBy?: string | null
-  /** @format uuid */
-  createdUserStaffBy?: string | null
-  createdUserName?: string | null
-  modifiedUserName?: string | null
-  /** @format date-time */
-  createdOn?: string
-  /** @format uuid */
-  lastModifiedBy?: string | null
-  /** @format date-time */
-  lastModifiedOn?: string | null
   /** 视图路由命名,ts中声明 */
   routeName?: string | null
   /** 视图名称 */
@@ -3096,7 +2988,7 @@ export interface ViewInfoOutput {
    * @format int32
    */
   sort?: number
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
   /**
    * 上级
@@ -3110,6 +3002,6 @@ export interface ViewInfoSearchRequest {
   search?: AdvancedSearch
   keyword?: string | null
   filter?: AdvancedFilter
-  /** Disabled(禁用)=0,Enabled(启用)=1 */
+  /** 启用状态:Disabled(禁用)=0,Enabled(启用)=1 */
   enabled?: EnabledStatusEnum
 }

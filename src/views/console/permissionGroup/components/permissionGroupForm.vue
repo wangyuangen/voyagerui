@@ -151,8 +151,6 @@ const open = async(data:any={})=>{
         let permissionGroupApis = data.permissionGroupApis as Array<PermissionGroupApiOutput>;
         state.form.apiIds= permissionGroupApis.map(x=>x.api?.id??'')
     }
-    ruleFormRef.value?.resetFields();
-
     proxy.$modal.closeLoading()
     state.showDialog = true
 }

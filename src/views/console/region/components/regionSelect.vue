@@ -1,6 +1,6 @@
 <template>
     <el-cascader
-      placeholder="请选择上级地区"
+      placeholder="请选择区域"
       :props="cascaderProps"
       filterable
       clearable

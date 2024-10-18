@@ -23,11 +23,6 @@
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作记录" width="100">
-                    <template #default="{row}">
-                        <AuditableRecord :data="row" />
-                    </template>
-                </el-table-column>
                 <el-table-column label="操作" width="160" fixed="right" 
                     v-auths="['api:console:role:update:put','api:console:role:auth-change:post','api:console:role:delete:delete']">
                     <template #default="{row}">
@@ -75,8 +70,6 @@ const MyDropdownMore = defineAsyncComponent(() => import('/@/components/my-dropd
 const RoleForm = defineAsyncComponent(()=>import('./components/roleForm.vue'));
 const RolePermissionForm = defineAsyncComponent(()=>import('./components/rolePermission.vue'));
 
-const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/auditableRecord.vue'));
-
 const roleFormRef = ref();
 const rolePermissionFormRef = ref();
 
@@ -85,7 +78,9 @@ const { proxy } = getCurrentInstance() as any;
 const state=reactive({
     loading:false,
     formTitle:'',
-    filter:{ } as RoleInfoPageRequest,
+    filter:{ 
+        orderBy:['Sort']
+    } as RoleInfoPageRequest,
     pageData:{} as PaginationResponseRoleInfoOutput
 });
 

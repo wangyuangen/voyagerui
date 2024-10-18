@@ -104,7 +104,6 @@ const open=async(data:any)=>{
       }
       proxy.$modal.closeLoading();
     }
-    ruleFormRef.value?.resetFields();
     state.showDialog = true;
 }
 

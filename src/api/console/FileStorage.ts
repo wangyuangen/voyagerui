@@ -25,6 +25,40 @@ export class FileStorageApi<SecurityDataType = unknown> extends HttpClient<Secur
    * No description
    *
    * @tags file-storage
+   * @name BulkUpload
+   * @summary 批量上传文件
+   * @request POST:/api/console/file-storage/bulk-upload
+   * @secure
+   */
+  bulkUpload = (
+    data: {
+      /** 文件集合 */
+      Files: File[]
+      /** 文件重命名 */
+      ReName?: boolean
+      /**
+       * 业务实体主键
+       * @format uuid
+       */
+      BizId?: string
+      /** 业务实体类型 fullName */
+      BizName?: string
+    },
+    params: RequestParams = {}
+  ) =>
+    this.request<ResultOutputListFileStorageInfoSimpleOutput, any>({
+      path: `/api/console/file-storage/bulk-upload`,
+      method: 'POST',
+      body: data,
+      secure: true,
+      type: ContentType.FormData,
+      format: 'json',
+      ...params,
+    })
+  /**
+   * No description
+   *
+   * @tags file-storage
    * @name Upload
    * @summary 上传文件
    * @request POST:/api/console/file-storage/upload

@@ -39,21 +39,20 @@
       TenantAdmin: { name: 'TenantAdmin', value: 10, desc: '租户管理员',theme:'' },
       PlatformAdmin: { name: 'PlatformAdmin', value: 100, desc: '平台管理员',theme:'' },
     }
+/** 默认数据字典 */
+    export const DefaultDataDictEnum = {
+      Unit: { name: 'Unit', value: 0, desc: '单位',theme:'' },
+    }
 /** 启用状态 */
     export const EnabledStatusEnum = {
       Disabled: { name: 'Disabled', value: 0, desc: '禁用',theme:'info' },
       Enabled: { name: 'Enabled', value: 1, desc: '启用',theme:'success' },
     }
-/**  */
+/** 性别 */
     export const GenderEnum = {
       Unknown: { name: 'Unknown', value: 0, desc: '未知',theme:'info' },
       Male: { name: 'Male', value: 1, desc: '男',theme:'warning' },
       Female: { name: 'Female', value: 2, desc: '女',theme:'success' },
-    }
-/** 菜单路由类型 */
-    export const MenuRouteTypeEnum = {
-      Group: { name: 'Group', value: 1, desc: '分组',theme:'' },
-      Menu: { name: 'Menu', value: 2, desc: '菜单',theme:'' },
     }
 /** 机构类型 */
     export const OrganizeTypeEnum = {
@@ -61,7 +60,12 @@
       Department: { name: 'Department', value: 1, desc: '部门',theme:'' },
       Group: { name: 'Group', value: 2, desc: '小组',theme:'' },
     }
-/**  */
+/** 菜单路由类型 */
+    export const MenuRouteTypeEnum = {
+      Group: { name: 'Group', value: 1, desc: '分组',theme:'' },
+      Menu: { name: 'Menu', value: 2, desc: '菜单',theme:'' },
+    }
+/** 地区级别 */
     export const RegionLevel = {
       Province: { name: 'Province', value: 1, desc: '省份',theme:'' },
       City: { name: 'City', value: 2, desc: '城市',theme:'' },

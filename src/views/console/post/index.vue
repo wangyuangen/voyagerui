@@ -15,11 +15,6 @@
         <el-card class="my-fill mt8" shadow="never">
             <el-table v-loading="state.loading" :data="state.pageData.data" style="width:100%" highlight-current-row>
                 <el-table-column prop="name" label="岗位名称" min-width="120" show-overflow-tooltip/>
-                <el-table-column label="操作记录" width="100">
-                    <template #default="{row}">
-                        <AuditableRecord :data="row" />
-                    </template>
-                </el-table-column>
                 <el-table-column label="操作" width="140" fixed="right" header-align="center"
                     v-auths="['api:console:post:update:put','api:console:post:delete:delete']">
                         <template #default="{ row }">
@@ -54,7 +49,6 @@ import { PostApi } from '/@/api/console/Post';
 const postFormRef = ref();
 const { proxy } = getCurrentInstance() as any;
 const PostForm = defineAsyncComponent(()=>import('./components/postForm.vue'));
-const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/auditableRecord.vue'));
 
 const state = reactive({
     loading:false,

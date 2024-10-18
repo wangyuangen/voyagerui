@@ -18,7 +18,7 @@
                 style="width:100%"
                 v-loading="state.loading"
                 row-key="id"
-                default-expend-all
+                default-expand-all
                 :tree-props="{ children: 'children', hasChildren: 'hasChildren' }">
                 <el-table-column prop="name" label="机构名称" min-width="120" show-overflow-tooltip/> 
                 <el-table-column prop="regionText" label="所在区域" min-width="100" show-overflow-tooltip/>

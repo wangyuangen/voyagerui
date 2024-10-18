@@ -78,13 +78,13 @@ const state=reactive({
         {label:'success',value:'success'},
         {label:'info',value:'info'},
         {label:'warning',value:'warning'},
-        {label:'danger',value:'danger'}
+        {label:'danger',value:'danger'},
+        {label:'primary',value:'primary'}
     ]
 })
 
 const open=(data:any)=>{
     state.form = JSON.parse(JSON.stringify(data));
-    ruleFormRef.value?.resetFields();
     state.showDialog = true;
 }
 

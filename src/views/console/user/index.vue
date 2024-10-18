@@ -53,6 +53,18 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <div class="my-flex my-flex-end" style="margin-top: 20px">
+                <el-pagination 
+                    v-model:currentPage="state.pageData.currentPage"
+                    v-model:page-size="state.pageData.pageSize"
+                    :total="state.pageData.totalCount"
+                    :page-sizes="[10,20,50,100]"
+                    small
+                    background
+                    @size-change="onPageSizeChange"
+                    @current-change="onPageNumberChange"
+                    layout="total, sizes, prev, pager, next, jumper"/>
+            </div>
         </el-card>
     </div>
 </template>
@@ -69,7 +81,9 @@ const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/aud
 
 const state=reactive({
     loading:false,
-    pageFilter:{} as UserInfoPageRequest,
+    pageFilter:{
+        orderBy:['CreatedOn Desc']
+    } as UserInfoPageRequest,
     pageData:{} as PaginationResponseUserInfoOutput
 })
 
@@ -101,4 +115,14 @@ const onResetPassword = (data:UserInfoOutput)=>{
         }).catch(()=>{});
 }
 
+const onPageSizeChange=(value:number)=>{
+    state.pageFilter.pageSize = value;
+    state.pageFilter.pageNumber = 1;
+    onQuery();
+}
+
+const onPageNumberChange=(value:number)=>{
+    state.pageFilter.pageNumber = value;
+    onQuery();
+}
 </script>

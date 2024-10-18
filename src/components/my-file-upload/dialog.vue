@@ -38,7 +38,7 @@ const emits = defineEmits(['fileUploadSuccess']);
 defineProps({
     title:{
         type:String,
-        defualt:'上传文件'
+        default:'上传文件'
     }
 })
 

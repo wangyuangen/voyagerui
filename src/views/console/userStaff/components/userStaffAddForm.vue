@@ -250,7 +250,6 @@ const open=async(data:any)=>{
     await getRoles();
     proxy.$modal.closeLoading();
     state.form =JSON.parse(JSON.stringify(data));
-    ruleFormRef.value?.resetFields();
     state.showDialog = true;
 }
 

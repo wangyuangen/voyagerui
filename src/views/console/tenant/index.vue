@@ -85,7 +85,9 @@ const myFilterDialogRef = ref()
 const state = reactive({
     loading:false,
     pageData:{} as PaginationResponseTenantOutput,
-    pageFilter:{} as TenantPageRequest,
+    pageFilter:{
+        orderBy:['CreatedOn Desc']
+    } as TenantPageRequest,
     formTitle:'',
     filters:[
         {

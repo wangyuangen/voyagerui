@@ -52,7 +52,7 @@
                     </el-col>
                     <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                         <el-form-item label="所在区域">
-                            <RegionSelect @change="onRegionSelectedChange" v-model="state.checkedRegionNodes"/>
+                            <RegionSelect :enabled="1" @change="onRegionSelectedChange" v-model="state.checkedRegionNodes"/>
                         </el-form-item>
                     </el-col>
                     <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">

@@ -35,11 +35,6 @@
                             </el-tag>
                         </template>
                     </el-table-column>
-                    <el-table-column label="操作记录" width="100">
-                        <template #default="{row}">
-                            <AuditableRecord :data="row" />
-                        </template>
-                    </el-table-column>
                     <el-table-column label="操作" width="140" fixed="right" header-align="center"
                         v-auths="['api:console:data-dict:update:put','api:console:data-dict:delete:delete']">
                         <template #default="{ row }">
@@ -74,7 +69,6 @@ import { DataDictApi } from '/@/api/console/DataDict';
 import { getDescByValue, getThemeByValue } from '/@/utils/enum';
 
 const DataDictForm = defineAsyncComponent(()=>import('./components/dictForm.vue'));
-const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/auditableRecord.vue'));
 
 const emits = defineEmits(['selectedChange'])
 
@@ -86,7 +80,9 @@ const dataDictFormRef = ref();
 const state = reactive({
     loading:false,
     formTitle:'',
-    pageFilter:{} as DataDictPageRequest,
+    pageFilter:{
+        orderBy:['Sort']
+    } as DataDictPageRequest,
     pageData:{} as PaginationResponseDataDictOutput,
     selectedRow:{} as DataDictOutput
 })

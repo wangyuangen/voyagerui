@@ -106,7 +106,6 @@ const state = reactive({
 const open=(data:any)=>{
     state.form = JSON.parse(JSON.stringify(data));
     state.showDialog = true;
-    ruleFormRef.value?.resetFields();
 }
 
 const onSave=()=>{

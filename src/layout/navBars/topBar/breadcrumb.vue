@@ -31,7 +31,7 @@ import other from '/@/utils/other'
 import { storeToRefs } from 'pinia'
 import { useThemeConfig } from '/@/stores/themeConfig'
 import { useRoutesList } from '/@/stores/routesList'
-import { filterTree, treeToList } from '/@/utils/tree'
+import { filterList, listToTree, treeToList } from '/@/utils/tree'
 import { cloneDeep } from 'lodash-es'
 
 // 定义变量内容
@@ -75,17 +75,18 @@ const getBreadcrumbList = (arr: RouteItems, path: string) => {
   //第一次初始化时执行时,避免使用路由查找时重复执行
   if (state.routeSplitIndex == 1) {
     //优先使用菜单判断面包屑显示，如果找不到匹配的路由菜单，则执行旧的逻辑使用地址判断
-    let routeTree = filterTree(cloneDeep(arr), path, {
-      children: 'children',
-      filterWhere: (item: any, filterword: string) => {
-        return item.path?.toLocaleLowerCase().indexOf(filterword) > -1
-      },
-    })
+    let routeTree = listToTree(
+      filterList(treeToList(cloneDeep(arr)), path, {
+        filterWhere: (item: any, word: string) => {
+          return item.path?.toLocaleLowerCase() === word
+        },
+      })
+    )
     if (routeTree.length > 0) {
       //查找第一个匹配的路由，将其展开添加到面包屑中
       const routeArr = treeToList([routeTree[0]])
       if (routeArr.length > 0) {
-        routeArr.forEach((item: RouteItem, k: number) => {
+        routeArr.forEach((item: RouteItem) => {
           !state.breadcrumbList.find((a) => a.path === item.path) && state.breadcrumbList.push(item)
         })
         //匹配不到再使用路径去匹配

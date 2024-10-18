@@ -72,17 +72,8 @@
                     layout="total, sizes, prev, pager, next, jumper"/>
             </div>
         </el-card>
-        <el-drawer :title="state.showViewerTitle" v-model="state.showDocxViewer" size="50%" destroy-on-close>
-			<vue-office-docx :src="state.fileViewUrl" style="height: 100vh" @rendered="renderedHandler" @error="errorHandler" />
-		</el-drawer>
-		<el-drawer :title="state.showViewerTitle" v-model="state.showXlsxViewer" size="50%" destroy-on-close>
-			<vue-office-excel :src="state.fileViewUrl" style="height: 100vh" @rendered="renderedHandler" @error="errorHandler" />
-		</el-drawer>
-		<el-drawer :title="state.showViewerTitle" v-model="state.showPdfViewer" size="50%" destroy-on-close>
-			<vue-office-pdf :src="state.fileViewUrl" style="height: 100vh" @rendered="renderedHandler" @error="errorHandler" />
-		</el-drawer>
-		<el-image-viewer v-if="state.showImgViewer" :url-list="state.imgViewList" @close="state.showImgViewer = false"></el-image-viewer>
         <FileUploadDialog ref="fileUploadRef" :title="state.fileUploadTitle" @file-upload-success="fileUploadSuccess"></FileUploadDialog>
+        <FilePreview ref="filePreviewRef"></FilePreview>
     </div>
 </template>
 
@@ -91,11 +82,6 @@ import { computed, defineAsyncComponent, getCurrentInstance, onMounted, reactive
 import { FileStorageInfoOutput, FileStorageInfoPageRequest, PaginationResponseFileStorageInfoOutput } from '/@/api/console/data-contracts';
 import { FileStorageApi } from '/@/api/console/FileStorage';
 
-import VueOfficeDocx from '@vue-office/docx';
-import VueOfficeExcel from '@vue-office/excel';
-import VueOfficePdf from '@vue-office/pdf';
-import '@vue-office/docx/lib/index.css';
-import '@vue-office/excel/lib/index.css';
 import { downloadByUrl } from '/@/utils/download';
 import { isImage } from '/@/utils/test';
 
@@ -104,20 +90,17 @@ const { proxy } = getCurrentInstance() as any;
 const AuditableRecord = defineAsyncComponent(()=>import('/@/components/table/auditableRecord.vue'))
 const FileUploadDialog = defineAsyncComponent(()=>import('/@/components/my-file-upload/dialog.vue'));
 const MyDropdownMore = defineAsyncComponent(()=>import('/@/components/my-dropdown-more/index.vue'));
+const FilePreview = defineAsyncComponent(()=>import('./components/filePreview.vue'));
 
 const fileUploadRef = ref();
+const filePreviewRef = ref();
 
 const state = reactive({
     loading:false,
-    pageFilter:{} as FileStorageInfoPageRequest,
+    pageFilter:{
+        orderBy:['CreatedOn Desc']
+    } as FileStorageInfoPageRequest,
     pageData:{} as PaginationResponseFileStorageInfoOutput,
-    showDocxViewer: false,
-	showXlsxViewer: false,
-	showPdfViewer: false,
-	showImgViewer: false,
-    showViewerTitle:'',
-    fileViewUrl:'',
-    imgViewList:[] as string[],
     fileUploadTitle:''
 })
 
@@ -159,24 +142,7 @@ const onUpload = ()=>{
 }
 
 const onPreview = (data:FileStorageInfoOutput)=>{
-    if(!data.linkUrl){
-        proxy.$modal.msgWarning("无效链接");
-        return;
-    }
-	state.showViewerTitle = `[${data.fileName}${data.extension}]`;
-    state.fileViewUrl = data.linkUrl;
-    if (data.extension == '.pdf') {
-		state.showPdfViewer = true;
-	} else if (data.extension == '.docx') {
-		state.showDocxViewer = true;
-	} else if (data.extension == '.xlsx') {
-		state.showXlsxViewer = true;
-	} else if (['.jpg', '.png', '.jpeg', '.bmp'].findIndex((e) => e == data.extension) > -1) {
-		state.imgViewList = [data.linkUrl];
-		state.showImgViewer = true;
-	} else {
-		proxy.$modal.msgWarning('此文件格式不支持预览');
-	}
+    filePreviewRef.value.onPreview(data);
 }
 
 const onDownload = (data:FileStorageInfoOutput)=>{
@@ -205,14 +171,5 @@ const onDelete=(data:FileStorageInfoOutput)=>{
             onQuery();
         }).catch(()=>{});
 }
-
-// 文件渲染完成
-const renderedHandler = () => {
-
-};
-// 文件渲染失败
-const errorHandler = () => {
-
-};
 
 </script>

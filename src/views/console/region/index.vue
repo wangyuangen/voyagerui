@@ -153,7 +153,9 @@ const state=reactive({
     syncRegionLevel: 2 as RegionLevel,
     formTitle:'',
     pageData:{} as PaginationResponseRegionInfoPageOutput,
-    pageFilter:{} as RegionInfoPageRequest,
+    pageFilter:{
+        orderBy:['Sort']
+    } as RegionInfoPageRequest,
     regionLevelList:toOptionsByValue(RegionLevelEnum),
     enabledStatusList:toOptionsByValue(EnabledStatusEnum),
     hotList:[

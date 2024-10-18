@@ -1,4 +1,5 @@
-import { isValidGuid } from "./toolsValidate"
+import { cloneDeep, merge, isEmpty, isFunction } from 'lodash-es'
+import { isValidGuid } from './toolsValidate'
 
 /**
 * @description: 列表转树形列表
@@ -6,60 +7,41 @@ import { isValidGuid } from "./toolsValidate"
 listToTree(cloneDeep(list))
 
 listToTree(cloneDeep(list), {
-  rootWhere: (parent, self) => {
-    return self.parentId === 0
-  },
-  childsWhere: (parent, self) => {
-    return parent.id === self.parentId
-  },
-  addChilds: (parent, childList) => {
-    if (childList?.length > 0) {
-      parent['children'] = childList
-    }
-  }
+  idKey: 'id',
+  parentIdKey: 'parentId',
+  childrenKey: 'children',
+  extraData: null
 })
 */
-export function listToTree(list: any = [], options = {}, data = null) {
-  const { rootWhere, childsWhere, addChilds } = Object.assign(
+export function listToTree(list: any = [], options = {}) {
+  const { idKey, parentIdKey, childrenKey, extraData } = Object.assign(
     {
-      rootWhere: (parent: any, self: any) => {
-        return !isValidGuid(self.parentId)
-      },
-      childsWhere: (parent: any, self: any) => {
-        return parent.id === self.parentId
-      },
-      addChilds: (parent: any, childList: any) => {
-        if (childList?.length > 0) {
-          parent['children'] = childList
-        }
-      },
+      idKey: 'id',
+      parentIdKey: 'parentId',
+      childrenKey: 'children',
+      extraData: null as any,
     },
     options || {}
   )
-  let tree = [] as any
-  // 空列表
-  if (!(list?.length > 0)) {
-    return tree
-  }
-
-  // 顶级
-  const rootList = list.filter((item: any) => rootWhere && rootWhere(data, item))
-  if (!(rootList?.length > 0)) {
-    return tree
-  }
-  tree = tree.concat(rootList)
-
-  // 子级
-  tree.forEach((root: any) => {
-    const rootChildList = list.filter((item: any) => childsWhere && childsWhere(root, item))
-    if (!(rootChildList?.length > 0)) {
-      return
+  const idMap: { [key: string]: any } = {}
+  list.forEach((item: any) => {
+    idMap[item[idKey]] = cloneDeep(item)
+    if (isFunction(extraData)) {
+      extraData(idMap[item[idKey]])
+    } else if (!isEmpty(extraData)) {
+      merge(idMap[item[idKey]], extraData)
     }
-    rootChildList.forEach((item: any) => {
-      const childList = listToTree(list, { rootWhere: childsWhere, childsWhere, addChilds }, item)
-      addChilds && addChilds(item, childList)
-    })
-    addChilds && addChilds(root, rootChildList)
+    idMap[item[idKey]][childrenKey] = []
+  })
+
+  const tree = [] as any
+  list.forEach((item: any) => {
+    const parentId = item[parentIdKey]
+    if (idMap[parentId]) {
+      idMap[parentId][childrenKey].push(idMap[item[idKey]])
+    } else {
+      tree.push(idMap[item[idKey]])
+    }
   })
 
   return tree
@@ -124,7 +106,7 @@ export function filterTree(tree: any = [], keyword: string, options = {}) {
     {
       children: 'children',
       filterWhere: (item: any, word: string) => {
-        return item.name?.toLocaleLowerCase().indexOf(word) > -1
+        return item.name?.toLocaleLowerCase().indexOf(word?.toLocaleLowerCase()) > -1
       },
     },
     options || {}
